@@ -5,34 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Διαδραστική Φόρμα</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; }
-        .question { display: none; }
-        .question.active { display: block; }
-        button { padding: 8px 16px; margin-top: 10px; }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6dd5ed, #2193b0);
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            background: #ffffff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .question {
+            display: none;
+            transition: opacity 0.5s ease;
+        }
+        .question.active {
+            display: block;
+            opacity: 1;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background: #2193b0;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #176f87;
+        }
     </style>
 </head>
 <body>
-    <h1>Διαδραστική Φόρμα</h1>
-    <div class="question active" id="question1">
-        <p>Ποιο είναι το όνομά σας;</p>
-        <input type="text" id="answer1">
-        <button onclick="nextQuestion(1)">Επόμενο</button>
-    </div>
-    <div class="question" id="question2">
-        <p>Ποια είναι η ηλικία σας;</p>
-        <input type="number" id="answer2">
-        <button onclick="nextQuestion(2)">Επόμενο</button>
-    </div>
-    <div class="question" id="question3">
-        <p>Ποια είναι η αγαπημένη σας εταιρεία ενέργειας;</p>
-        <input type="text" id="answer3">
-        <button onclick="submitForm()">Υποβολή</button>
+    <div class="container">
+        <h1>Διαδραστική Φόρμα</h1>
+        <div class="question active" id="question1">
+            <p>Ποιο είναι το όνομά σας;</p>
+            <input type="text" id="answer1" placeholder="Συμπληρώστε το όνομά σας">
+            <button onclick="nextQuestion(1)">Επόμενο</button>
+        </div>
+        <div class="question" id="question2">
+            <p>Ποια είναι η ηλικία σας;</p>
+            <input type="number" id="answer2" placeholder="Συμπληρώστε την ηλικία σας">
+            <button onclick="nextQuestion(2)">Επόμενο</button>
+        </div>
+        <div class="question" id="question3">
+            <p>Ποια είναι η αγαπημένη σας εταιρεία ενέργειας;</p>
+            <input type="text" id="answer3" placeholder="Συμπληρώστε την απάντηση σας">
+            <button onclick="submitForm()">Υποβολή</button>
+        </div>
     </div>
     
     <script>
         function nextQuestion(current) {
             const answer = document.getElementById(`answer${current}`).value;
-            localStorage.setItem(`answer${current}`, answer);  // Αποθηκεύει την απάντηση σε local storage
+            localStorage.setItem(`answer${current}`, answer);
             document.getElementById(`question${current}`).classList.remove("active");
             document.getElementById(`question${current + 1}`).classList.add("active");
         }
@@ -45,7 +96,7 @@
             };
             console.log("Απαντήσεις:", answers);
             alert("Ευχαριστούμε για τη συμμετοχή σας!");
-            localStorage.clear(); // Καθαρίζει τις απαντήσεις από το local storage
+            localStorage.clear();
         }
     </script>
 </body>
