@@ -93,13 +93,6 @@
             transition: width 0.3s;
         }
     </style>
-       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-       <script type="text/javascript">
-        (function() {
-            emailjs.init("umKXFGg5FxKmrBep6"); // Εδώ βάλτε το User ID σας
-            console.log("Η βιβλιοθήκη του EmailJS φορτώθηκε με επιτυχία.");
-        })();
-    </script>    
 </head>
 <body>
     <div class="container">
@@ -119,48 +112,38 @@
             <button onclick="nextQuestion(2)">Επόμενο</button>
         </div>
         <div class="question" id="question3">
-            <p>Ποιος είναι ο τρέχων πάροχος σας ;</p>
+            <p>Ποιος είναι ο τρέχων πάροχος σας ;;</p>
             <input type="text" id="answer4" placeholder="Συμπληρώστε το όνομα πάροχου">
             <button onclick="submitForm()">Υποβολή</button>
         </div>
     </div>
+    
     <script>
         function updateProgressBar(current) {
             const progressBarFill = document.getElementById('progressBarFill');
             const progressPercentage = (current / 3) * 100;
             progressBarFill.style.width = progressPercentage + '%';
         }
-    
+
         function nextQuestion(current) {
-            const answer = document.getElementById(`answer${current}`).value;
-            localStorage.setItem(`answer${current}`, answer);
-            document.getElementById(`question${current}`).classList.remove("active");
-            document.getElementById(`question${current + 1}`).classList.add("active");
+            const answer = document.getElementById(answer${current}).value;
+            localStorage.setItem(answer${current}, answer);
+            document.getElementById(question${current}).classList.remove("active");
+            document.getElementById(question${current + 1}).classList.add("active");
             updateProgressBar(current + 1);
         }
-    
+
         function submitForm() {
             const answers = {
                 name: localStorage.getItem("answer1"),
                 phone: localStorage.getItem("answer2"),
-                email: localStorage.getItem("answer3"),
-                provider: localStorage.getItem("answer4")
+                Company: localStorage.getItem("answer3")
             };
-    
-            // Αποστολή email μέσω EmailJS
-            emailjs.send("service_1i162dg", "template_b69uujd", answers)
-                .then(function(response) {
-                    alert("Ευχαριστούμε για το ενδιαφέρον σας. Σύντομα θα επικοινωνήσει κάποιος μαζί σας.");
-                    console.log("SUCCESS!", response.status, response.text);
-                    localStorage.clear();
-                    updateProgressBar(3);
-                })
-                .catch(function(error) {
-                    alert("Υπήρξε πρόβλημα κατά την αποστολή του email. Παρακαλώ δοκιμάστε ξανά.");
-                    console.error("FAILED...", error);
-                });
+            console.log("Απαντήσεις:", answers);
+            alert("Ευχαριστούμε για τη συμμετοχή σας!");
+            localStorage.clear();
+            updateProgressBar(3);
         }
     </script>
 </body>
-</html>
-        
+</html> 
