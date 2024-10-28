@@ -11,14 +11,17 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #6dd5ed, #2193b0);
+            background-image: url(https://rangerjamie.com.au/wp-content/uploads/2020/01/stage-3-electricity-energy-light.jpg);
+            background-size: cover; /* Για να καλύπτει όλο το background */
+            background-position: center;
+            background-repeat: no-repeat;
             margin: 0;
             color: #333;
         }
         .container {
             background: #ffffff;
-            padding: 40px 30px;
-            border-radius: 10px;
+            padding: 20px 30px;
+            border-radius: 20px;
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
             max-width: 400px;
             width: 100%;
@@ -28,6 +31,7 @@
         }
         h1 {
             margin-bottom: 20px;
+            margin-top: 10px;
             color: #333;
         }
         .question {
@@ -44,12 +48,12 @@
             transform: translateX(0);
         }
         input[type="text"], input[type="number"] {
-            width: 100%;
+            width: 95%;
             padding: 10px;
-            margin-top: 80px;
+            margin-top: 40px;
             margin-bottom: 10px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 15px;
             font-size: 16px;
             box-sizing: border-box;
             transition: border-color 0.3s;
@@ -76,7 +80,7 @@
             height: 5px;
             background: #ddd;
             border-radius: 5px;
-            margin-top: 130px;
+            margin-top: 210px;
             
             overflow: hidden;
         }
@@ -90,7 +94,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Διαδραστική Φόρμα</h1>
+        <h1>IDEAL</h1>
         <div class="progress-bar">
             <div class="progress-bar-fill" id="progressBarFill"></div>
         </div>
@@ -100,13 +104,14 @@
             <button onclick="nextQuestion(1)">Επόμενο</button>
         </div>
         <div class="question" id="question2">
-            <p>Ποια είναι η ηλικία σας;</p>
-            <input type="number" id="answer2" placeholder="Συμπληρώστε την ηλικία σας">
+            <p>Στοιχεία επικοινωνίας</p>
+            <input type="number" id="answer2" placeholder="Συμπληρώστε το κινητό σας τηλέφωνο">
+            <input type="text" id="answer3" placeholder="Συμπληρώστε το Email σας (προαιρετικό) ">
             <button onclick="nextQuestion(2)">Επόμενο</button>
         </div>
         <div class="question" id="question3">
-            <p>Ποια είναι η αγαπημένη σας εταιρεία ενέργειας;</p>
-            <input type="text" id="answer3" placeholder="Συμπληρώστε την απάντηση σας">
+            <p>Ποιος είναι ο τρέχων πάροχος σας ;;</p>
+            <input type="text" id="answer4" placeholder="Συμπληρώστε το όνομα πάροχου">
             <button onclick="submitForm()">Υποβολή</button>
         </div>
     </div>
@@ -129,8 +134,8 @@
         function submitForm() {
             const answers = {
                 name: localStorage.getItem("answer1"),
-                age: localStorage.getItem("answer2"),
-                favoriteCompany: localStorage.getItem("answer3")
+                phone: localStorage.getItem("answer2"),
+                Company: localStorage.getItem("answer3")
             };
             console.log("Απαντήσεις:", answers);
             alert("Ευχαριστούμε για τη συμμετοχή σας!");
