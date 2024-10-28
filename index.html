@@ -117,7 +117,13 @@
             <button onclick="submitForm()">Υποβολή</button>
         </div>
     </div>
-    
+
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("umKXFGg5FxKmrBep6"); // Βάλε το User ID από το EmailJS
+        })();
+    </script>
     <script>
         function updateProgressBar(current) {
             const progressBarFill = document.getElementById('progressBarFill');
@@ -137,13 +143,25 @@
             const answers = {
                 name: localStorage.getItem("answer1"),
                 phone: localStorage.getItem("answer2"),
-                Company: localStorage.getItem("answer3")
+                email: localStorage.getItem("answer3"),
+                Company: localStorage.getItem("answer4")
             };
-            console.log("Απαντήσεις:", answers);
-            alert("Ευχαριστούμε για το ενδιαφέρων σας σύντομα ένας συνάδελφος θα επικοινωνήσει μαζί σας");
+
+            // Αποστολή email μέσω EmailJS
+            emailjs.send("service_1i162dg", "template_b69uujd", answers)
+                .then(function(response) {
+                    alert("Ευχαριστούμε για το ενδιαφέρων σας σύντομα ένας συνάδελφος θα επικοινωνήσει μαζί σας");
+                    console.log("SUCCESS!", response.status, response.text);
+                }, function(error) {
+                    alert("Υπήρξε πρόβλημα κατά την αποστολή.");
+                    console.log("FAILED...", error);
+                });
+
+            // Καθαρισμός τοπικής αποθήκευσης και progress bar
             localStorage.clear();
             updateProgressBar(3);
         }
     </script>
 </body>
 </html>
+        
