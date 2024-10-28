@@ -112,7 +112,7 @@
             <button onclick="nextQuestion(2)">Επόμενο</button>
         </div>
         <div class="question" id="question3">
-            <p>Ποιος είναι ο τρέχων πάροχος σας ;;</p>
+            <p>Ποιος είναι ο τρέχων πάροχος σας ;</p>
             <input type="text" id="answer4" placeholder="Συμπληρώστε το όνομα πάροχου">
             <button onclick="submitForm()">Υποβολή</button>
         </div>
@@ -126,10 +126,10 @@
         }
 
         function nextQuestion(current) {
-            const answer = document.getElementById(answer${current}).value;
-            localStorage.setItem(answer${current}, answer);
-            document.getElementById(question${current}).classList.remove("active");
-            document.getElementById(question${current + 1}).classList.add("active");
+            const answer = document.getElementById(`answer${current}`).value;
+            localStorage.setItem(`answer${current}`, answer);
+            document.getElementById(`question${current}`).classList.remove("active");
+            document.getElementById(`question${current + 1}`).classList.add("active");
             updateProgressBar(current + 1);
         }
 
@@ -140,10 +140,10 @@
                 Company: localStorage.getItem("answer3")
             };
             console.log("Απαντήσεις:", answers);
-            alert("Ευχαριστούμε για τη συμμετοχή σας!");
+            alert("Ευχαριστούμε για το ενδιαφέρων σας σύντομα ένας συνάδελφος θα επικοινωνήσει μαζί σας");
             localStorage.clear();
             updateProgressBar(3);
         }
     </script>
 </body>
-</html> 
+</html>
